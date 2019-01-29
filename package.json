@@ -1,0 +1,17 @@
+{
+  "name": "@bingo/bingo",
+  "version": "1.0.0",
+  "description": "this module does some awesome stuff with jwt",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "module",
+    "jwt",
+    "jsonwebtoken",
+    "url"
+  ],
+  "author": "Israel Oluwole O.",
+  "license": "ISC"
+}
