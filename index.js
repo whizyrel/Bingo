@@ -1,5 +1,4 @@
 // 'use strict';
-
 /* eslint-disable new-cap */
 /* eslint-disable require-jsdoc */
 const JWT = require('jsonwebtoken');
@@ -17,7 +16,7 @@ protocol = 'http',
 
 class Bingo {
   // eslint-disable-next-line max-len
-  form(JWTOptions, options, url, name = options.name, protocol = 'http') {
+  form(JWTOptions, options, url, name = (options.name ? options.name : 'data'), protocol = 'http') {
     this.payload = JWTOptions.payload;
     this.JWTKey = JWTOptions.key;
     this.options = JWTOptions.options;
@@ -27,9 +26,16 @@ class Bingo {
     this.protocol = protocol;
   }
 
+  create(obj) {
+    this.payload = obj.payload;
+    this.JWTKey = obj.key;
+    this.options = obj.options;
+  }
+
   static checkFields(bingo) {
     const result = [];
     const fields = [];
+    // console.log(bingo);
 
     for (const bing in bingo) {
       if (bing) {
@@ -52,6 +58,7 @@ class Bingo {
     });
     return result.includes(false);
   }
+
   JWTSign() {
     if (Bingo.checkFields(this)) {
       const errorMessage = new Error('Oops! something went wrong');
@@ -59,21 +66,58 @@ class Bingo {
         error: errorMessage,
       });
     } else {
+      // console.log(this.payload);
       return JWT.sign(
-        this.payload,
-        this.JWTKey,
-        this.options
+          this.payload,
+          this.JWTKey,
+          this.options
       );
     }
   }
+  get Object() {
+    return this;
+  }
   get token() {
+    // console.log(this.JWTSign());
     return this.JWTSign();
   }
+
   encryptedLink() {
     // eslint-disable-next-line max-len
-    const encLink = `${this.protocol}//:${this.urlString}${this.mode === 'param' ? '/' : `/?${this.name}=`}${this.JWTSign()}`;
+    const encLink = `${this.protocol}://${this.urlString}${this.mode === 'param' ? '/' : `/?${this.name}=`}${this.JWTSign()}`;
     return encLink;
   }
 }
+
+/*
+const hey = new Bingo();
+hey.form({
+  payload: {
+    email: 'knjbhvgcffgvhbjnksd',
+  },
+  key: 'knfnjfk',
+  options: {
+    expiresIn: 5600,
+  },
+}, {
+  mode: 'query',
+}, 'jdbnbnfeubnine');
+console.log(hey.Object);
+console.log(hey.JWTSign());
+console.log(hey.encryptedLink());
+ */
+/* const hey = new Bingo();
+
+hey.create({
+  payload: {
+    email: 'knjbhvgcffgvhbjnksd',
+  },
+  key: 'knfnjfk',
+  options: {
+    expiresIn: 5600,
+  },
+});
+console.log(hey.Object);
+console.log(hey.JWTSign()); */
 
 module.exports = new Bingo();
