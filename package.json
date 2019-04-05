@@ -12,6 +12,13 @@
     "jsonwebtoken",
     "url"
   ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/whizyrel/Bingo.git"
+  },
+  "dependencies": {
+    "jsonwebtoken": "^8.4.0"
+  },
   "author": "Israel Oluwole O.",
   "license": "ISC"
 }
