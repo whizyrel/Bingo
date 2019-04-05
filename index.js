@@ -1,18 +1,6 @@
 // 'use strict';
 /* eslint-disable new-cap */
-/* eslint-disable require-jsdoc */
 const JWT = require('jsonwebtoken');
-
-/*
-JWTOptions: {
-  payload: 'payload',
-  key: 'key',
-  options: {},
-}
-URL: 'URL',
-options: {mode: 'param || query', name: 'query field title'},
-protocol = 'http',
-*/
 
 /**
  * @class Bingo
@@ -42,7 +30,10 @@ class Bingo {
     this.URLString = URL;
     this.protocol = protocol;
   }
-
+  /**
+   *
+   * @param {Object} obj
+   */
   create(obj) {
     this.payload = obj.payload;
     this.JWTKey = obj.key;
@@ -135,33 +126,3 @@ class Bingo {
  * @module Bingo
  */
 module.exports = new Bingo();
-
-/*
-const hey = new Bingo();
-hey.form({
-  payload: {
-    email: 'knjbhvgcffgvhbjnksd',
-  },
-  key: 'knfnjfk',
-  options: {
-    expiresIn: 5600,
-  },
-}, {
-  mode: 'query',
-}, 'jdbnbnfeubnine');
-console.log(hey.Object);
-console.log(hey.JWTSign());
-console.log(hey.encryptedLink());
- */
-/* const hey = new Bingo();
-hey.create({
-  payload: {
-    email: 'knjbhvgcffgvhbjnksd',
-  },
-  key: 'knfnjfk',
-  options: {
-    expiresIn: 5600,
-  },
-});
-console.log(hey.Object);
-console.log(hey.JWTSign()); */
