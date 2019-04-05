@@ -9,20 +9,37 @@ JWTOptions: {
   key: 'key',
   options: {},
 }
-url: 'url',
+URL: 'URL',
 options: {mode: 'param || query', name: 'query field title'},
 protocol = 'http',
 */
 
+/**
+ * @class Bingo
+ * @function form
+ * @function create
+ * @function JWTSign
+ * @function encryptedLink
+ */
 class Bingo {
   // eslint-disable-next-line max-len
-  form(JWTOptions, options, url, name = (options.name ? options.name : 'data'), protocol = 'http') {
+  // insert JWT Configuration
+  /**
+   * @param {Object} JWTOptions Options for JWT
+   * @param {Object} options URL Options
+   * @param {String} URL Preceeding URL
+   * @param {String} queryName URL query Name defaults to data
+   * @param {String} protocol either HTTP or HTTPS defaults to HTTP
+   */
+  form(JWTOptions, options, URL,
+      queryName = (options.name ? options.name : 'data'),
+      protocol = (options.protocol ? options.protocol : 'http')) {
     this.payload = JWTOptions.payload;
     this.JWTKey = JWTOptions.key;
     this.options = JWTOptions.options;
     this.mode = options.mode;
-    this.name = name;
-    this.urlString = url;
+    this.name = queryName;
+    this.URLString = URL;
     this.protocol = protocol;
   }
 
@@ -32,6 +49,12 @@ class Bingo {
     this.options = obj.options;
   }
 
+  /**
+   * checks fields trhough for emptiness
+   * @function checkFields
+   * @param {Object} bingo
+   * @return {Boolean} result for fields check
+   */
   static checkFields(bingo) {
     const result = [];
     const fields = [];
@@ -59,12 +82,16 @@ class Bingo {
     return result.includes(false);
   }
 
+  /**
+   * signs the passed configuration
+   * @function JWTSign
+   * @return {String} JWT Signing
+   */
   JWTSign() {
     if (Bingo.checkFields(this)) {
       const errorMessage = new Error('Oops! something went wrong');
-      console.log(errorMessage) && res.status(500).json({
-        error: errorMessage,
-      });
+      console.log(errorMessage);
+      throw errorMessage;
     } else {
       // console.log(this.payload);
       return JWT.sign(
@@ -74,20 +101,40 @@ class Bingo {
       );
     }
   }
+  /**
+   * @function Object
+   * @return {Object} this
+   */
   get Object() {
     return this;
   }
+  /**
+   * @function token
+   * @return {String} JWTSign
+   */
   get token() {
     // console.log(this.JWTSign());
     return this.JWTSign();
   }
 
+  /**
+   * Function returns complete encryption link
+   * @function encryptedLink
+   * @return {String} encrypted Link
+   */
   encryptedLink() {
     // eslint-disable-next-line max-len
-    const encLink = `${this.protocol}://${this.urlString}${this.mode === 'param' ? '/' : `/?${this.name}=`}${this.JWTSign()}`;
+    const encLink = `${this.protocol}://${this.URLString}${this.mode === 'param' ? `/${this.JWTSign()}`
+        : `/?${this.name}=`}${this.JWTSign()}`;
     return encLink;
   }
 }
+
+/**
+ * JWT helper
+ * @module Bingo
+ */
+module.exports = new Bingo();
 
 /*
 const hey = new Bingo();
@@ -107,7 +154,6 @@ console.log(hey.JWTSign());
 console.log(hey.encryptedLink());
  */
 /* const hey = new Bingo();
-
 hey.create({
   payload: {
     email: 'knjbhvgcffgvhbjnksd',
@@ -119,5 +165,3 @@ hey.create({
 });
 console.log(hey.Object);
 console.log(hey.JWTSign()); */
-
-module.exports = new Bingo();
