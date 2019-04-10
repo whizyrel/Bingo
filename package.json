@@ -1,5 +1,5 @@
 {
-  "name": "@bingo/bingo",
+  "name": "jwt-linker",
   "version": "1.0.0",
   "description": "this module does some awesome stuff with jwt",
   "main": "index.js",
@@ -8,17 +8,20 @@
   },
   "keywords": [
     "module",
-    "jwt",
+    "JWT",
     "jsonwebtoken",
     "url"
   ],
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/whizyrel/Bingo.git"
+    "url": "git+https://github.com/whizyrel/jwt-linker.git"
+  },
+  "bugs": {
+    "url": "https://github.com/whizyrel/jwt-linker/issues"
   },
   "dependencies": {
     "jsonwebtoken": "^8.4.0"
   },
-  "author": "Israel Oluwole O.",
+  "author": "Israel O.",
   "license": "ISC"
 }
