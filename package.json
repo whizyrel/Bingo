@@ -1,8 +1,8 @@
 {
   "name": "jwt-linker",
-  "version": "1.0.0",
+  "version": "1.0.1-alpha.0",
   "description": "this module does some awesome stuff with jwt",
-  "main": "index.js",
+  "main": "jwt-linker.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
