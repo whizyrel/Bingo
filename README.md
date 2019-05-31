@@ -1,2 +1,2 @@
 # Bingo
-just another routine around jwt; creates a link and stuffs
+A wrapper for around jwt; creates a link and stuffs
