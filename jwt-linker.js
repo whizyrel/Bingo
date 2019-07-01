@@ -33,7 +33,6 @@ class Bingo {
     this.name = queryName;
     this.URLString = URL;
     this.protocol = protocol;
-    this.token = '';
 
     return this;
   }
@@ -47,6 +46,7 @@ class Bingo {
     this.payload = obj.payload;
     this.JWTKey = obj.key;
     this.options = obj.options;
+    this.jwtSign();
 
     return this;
   }
@@ -95,23 +95,18 @@ class Bingo {
       const errorMessage = new Error('Oops! something went wrong');
       throw errorMessage;
     } else {
-      this.token = JWT.sign(this.payload, this.JWTKey, this.options);
-      return this.token;
+      this.tokenStore = JWT.sign(this.payload, this.JWTKey, this.options);
+      console.log(`[jwt sign token store] ${this.tokenStore}`);
+      return this;
     }
   }
-  /**
-   * @function Object
-   * @return {Object} this
-   */
-  get Object() {
-    return this;
-  }
+
   /**
    * @function token
    * @return {String} `jwtSign`
    */
   get token() {
-    return this.token;
+    return this.tokenStore;
   }
 
   /**
@@ -120,10 +115,13 @@ class Bingo {
    * @return {String} `encrypted Link`
    */
   encryptedLink() {
+    let path;
+    this.mode === 'param'
+      ? (path = `/${this.tokenStore}`)
+      : (path = `/?${this.name}=${path}`);
+
     // eslint-disable-next-line max-len
-    const encLink = `${this.protocol}://${this.URLString}${
-      this.mode === 'param' ? `/${this.jwtSign()}` : `/?${this.name}=`
-    }${this.jwtSign()}`;
+    const encLink = `${this.protocol}://${this.URLString}${path}`;
     return encLink;
   }
 }
