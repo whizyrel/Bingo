@@ -1,8 +1,11 @@
-# Bingo
+# jwtLinker # raidmaker https://img.shields.io/badge/status-stable-green.svg https://img.shields.io/badge/version-2.0.1-green.svg
 
 A wrapper for around jwt; It forms a link with JWT token
 
-I sincerely apologize for the troubles and I'm glad to announce that this version is now stable and functional. I really do not have time to write readmes but support and contributions are welcome.
+## Requirement
+
+- [Node](https://nodejs.org/en/download/)
+- [NPM](https://www.npmjs.com/package/jwt-linker)
 
 ## Installation
 
@@ -81,15 +84,19 @@ jwtSign().token; // would return the token
 jwtLinker.create(parameters).token; // JWT token
 ```
 
----
-
 ## Fixes
 
 - malformed link
-
----
 
 ## Additions
 
 - method jwtSign (chainable)
 - A readme
+
+# Project Status
+
+I sincerely apologize for the troubles and I'm glad to announce that this version is now stable and functional. I really do not have time to write readmes but support and contributions are welcome.
+
+# Support
+
+Visit the Github repo
