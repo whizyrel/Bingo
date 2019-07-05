@@ -1,77 +1,95 @@
 # Bingo
 
-A wrapper for around jwt; creates a link and stuffs
+A wrapper for around jwt; It forms a link with JWT token
 
 I sincerely apologize for the troubles and I'm glad to announce that this version is now stable and functional. I really do not have time to write readmes but support and contributions are welcome.
 
-To begin:
+## Installation
+
+Use the package manager [npm](https://www.npmjs.com/package/jwt-linker) to install jwt-linker.
+
+```bash
+npm install jwt-linker
+```
+
+## Usage
+
+```js
 const jwtLinker = require('jwt-linker');
+```
+
+#### form
 
 Use the `form` method if you would like to get a link. This method receives a number of parameters:
 
-- jwt options (object): payload, key, options. These are normal jwt stuffs like so:
-  {
+```js
+// jwt options (an object): payload, key, options. These are normal jwt stuffs
+const jwtOptions = {
   payload: payload,
-  key: `preferred key`,
+  key: `key`,
   options: options,
-  }
+};
 
-- URL Options (object): mode, name, protocol like so:
-  {
+// URL Options (object): mode, name, protocol like so:
+const urlOptions = {
   mode: 'param' || 'query',
   name: 'requred if query mode is preferred',
-  protocol: 'http' || 'https'
-  }
+  protocol: 'http' || 'https',
+};
 
-- URL (string): an example is `localhost:4200`
+// URL (string): an example is `localhost:4200`
+const URL = localhost:4200;
 
-example:
-jwtLinker.form({
-payload: payload,
-key: `preferred key`,
-options: options,
-}, {
-mode: 'param' || 'query',
-name: 'requred if query mode is preferred',
-protocol: 'http' || 'https'
-}, URL);
+jwtLinker.form(jwtOptions, urlOptions, URL);
+```
 
-- other parameters are optional
+other parameters `queryName && protocol` are optional
 
-`jwtSign method`
-`jwtLinker.jwtSign`
-jwtLinker.jwtSign() // signs the token
-You could do jwtSign().token // would return the token
+#### jwtSign
 
----
+```js
+jwtLinker.jwtSign(); // signs the token
+```
 
-`jwt.create`
+#### create
+
 Use the `create` method if you would like just the encryption like so:
 
+```js
 jwtLinker.create({
-payload: payload,
-key: key,
-options: options,
+  payload: payload, // JWT payload
+  key: key, // encryption key
+  options: options, // JWT options
 });
+```
 
----
+#### encryptedLink
 
-`jwtLinker.token`
-Token
+Use this method to get a link with the encryption given the configuration parameters you have supplied.
+
+```js
+jwtLinker.encryptedLink(); // returns an encrypted link based on the parameters described above in jwtLinker.form(parameters);
+```
+
+#### token
+
 Token is a getter that returns the JWT Token.
 
-jwtLinker.create(parameters).token // JWT token ||
-jwtLinker.form(parameters).token
+```js
+jwtSign().token; // would return the token
 
-`jwtLinker.encryptedLink`
-jwtLinker.encryptedLink() // return an encrypted link based on the parameters described above in jwtLinker.form(parameters);
+jwtLinker.create(parameters).token; // JWT token
+```
 
 ---
 
-fixes:
+## Fixes
 
 - malformed link
 
-additions
+---
+
+## Additions
 
 - method jwtSign (chainable)
+- A readme
