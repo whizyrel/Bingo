@@ -41,7 +41,7 @@ const urlOptions = {
 };
 
 // URL (string): an example is `localhost:4200`
-const URL = localhost:4200;
+const URL = 'localhost:4200';
 
 jwtLinker.form(jwtOptions, urlOptions, URL);
 ```
