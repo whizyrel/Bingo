@@ -1,4 +1,4 @@
-# jwtLinker # raidmaker https://img.shields.io/badge/status-stable-green.svg https://img.shields.io/badge/version-2.0.1-green.svg
+# jwtLinker
 
 A wrapper for around jwt; It forms a link with JWT token
 
